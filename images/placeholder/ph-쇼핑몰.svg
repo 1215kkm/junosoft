@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#13315C"/><stop offset="100%" stop-color="#0B1F3A"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<g transform="translate(80,120)">
+  <rect width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="20" y="160" width="120" height="14" rx="4" fill="#C8A85A"/>
+  <rect x="220" width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="240" y="160" width="120" height="14" rx="4" fill="#C8A85A"/>
+  <rect x="440" width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="460" y="160" width="120" height="14" rx="4" fill="#C8A85A"/>
+  <rect y="220" width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="20" y="380" width="120" height="14" rx="4" fill="#C8A85A"/>
+  <rect x="220" y="220" width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="240" y="380" width="120" height="14" rx="4" fill="#C8A85A"/>
+  <rect x="440" y="220" width="200" height="180" rx="14" fill="#1c3b6d"/><rect x="460" y="380" width="120" height="14" rx="4" fill="#C8A85A"/>
+</g>
+<text x="400" y="560" text-anchor="middle" fill="#C8A85A" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="22" font-weight="700">쇼핑몰 / SHOP</text>
+</svg>

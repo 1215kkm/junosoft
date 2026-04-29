@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1F3A"/><stop offset="100%" stop-color="#13315C"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<g transform="translate(60,140)" opacity=".55">
+  <rect width="320" height="320" rx="14" fill="#1c3b6d"/>
+  <rect x="20" y="20" width="200" height="20" rx="4" fill="#2a4f8a"/>
+  <rect x="20" y="60" width="280" height="140" rx="8" fill="#274876"/>
+  <rect x="20" y="220" width="120" height="12" rx="4" fill="#2a4f8a"/>
+  <rect x="20" y="240" width="180" height="12" rx="4" fill="#2a4f8a"/>
+  <rect x="20" y="260" width="160" height="12" rx="4" fill="#2a4f8a"/>
+</g>
+<g transform="translate(420,140)">
+  <rect width="320" height="320" rx="14" fill="#1c3b6d" stroke="#C8A85A" stroke-width="3"/>
+  <rect x="20" y="20" width="200" height="22" rx="4" fill="#C8A85A"/>
+  <rect x="20" y="60" width="280" height="140" rx="10" fill="#274876"/>
+  <rect x="20" y="220" width="280" height="80" rx="10" fill="#2a4f8a"/>
+</g>
+<text x="400" y="80" text-anchor="middle" fill="#C8A85A" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="22" font-weight="700">BEFORE → AFTER (리뉴얼)</text>
+</svg>

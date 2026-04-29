@@ -1,0 +1,65 @@
+name: Auto Blog (Gemini)
+
+on:
+  schedule:
+    # 한국시간 화·금 09:00 == UTC 화·금 00:00
+    - cron: "0 0 * * 2,5"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "수동 실행 사유"
+        required: false
+        default: "manual"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: curl, mbstring, json
+
+      - name: Generate post
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+          SITE_BASE_URL: https://junosoft.co.kr
+        run: php tools/auto-blog/run.php
+
+      - name: Commit
+        run: |
+          git config user.name "junosoft-bot"
+          git config user.email "bot@junosoft.co.kr"
+          git add blog/ sitemap.xml tools/auto-blog/topics.txt
+          git commit -m "blog: auto post $(date -u +'%Y-%m-%d')" || echo "nothing to commit"
+          git push
+
+      # (선택) 닷홈으로 FTP 동기화 — 환경변수 등록 시에만 동작
+      - name: Deploy to Dothome via FTP
+        if: ${{ env.FTP_SERVER != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /html/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            tools/**
+            docs/**
+            README.md

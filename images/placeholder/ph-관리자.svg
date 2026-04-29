@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1F3A"/><stop offset="100%" stop-color="#13315C"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<rect x="60" y="80" width="180" height="440" rx="12" fill="#1c3b6d"/>
+<rect x="80" y="120" width="140" height="14" rx="4" fill="#C8A85A"/>
+<rect x="80" y="150" width="120" height="10" rx="4" fill="#2a4f8a"/>
+<rect x="80" y="170" width="120" height="10" rx="4" fill="#2a4f8a"/>
+<rect x="80" y="190" width="120" height="10" rx="4" fill="#2a4f8a"/>
+<rect x="280" y="80" width="460" height="160" rx="12" fill="#1c3b6d"/>
+<rect x="300" y="100" width="140" height="20" rx="4" fill="#C8A85A"/>
+<rect x="300" y="140" width="420" height="80" rx="6" fill="#2a4f8a"/>
+<rect x="280" y="270" width="220" height="250" rx="12" fill="#1c3b6d"/>
+<rect x="520" y="270" width="220" height="250" rx="12" fill="#1c3b6d"/>
+<text x="400" y="560" text-anchor="middle" fill="#C8A85A" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="22" font-weight="700">ADMIN / DASHBOARD</text>
+</svg>
