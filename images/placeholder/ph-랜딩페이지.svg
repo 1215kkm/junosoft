@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1F3A"/><stop offset="100%" stop-color="#1c3b6d"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<rect x="120" y="120" width="560" height="80" rx="10" fill="#C8A85A"/>
+<rect x="120" y="220" width="380" height="20" rx="6" fill="#2a4f8a"/>
+<rect x="120" y="252" width="320" height="20" rx="6" fill="#2a4f8a"/>
+<rect x="120" y="320" width="160" height="48" rx="999" fill="#C8A85A"/>
+<rect x="120" y="420" width="560" height="120" rx="14" fill="#1c3b6d"/>
+<text x="400" y="170" text-anchor="middle" fill="#0B1F3A" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="22" font-weight="800">LANDING</text>
+</svg>

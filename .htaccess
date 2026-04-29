@@ -1,0 +1,45 @@
+# 닷홈 호스팅 권장 설정
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml .svg
+
+# HTTPS 강제 (닷홈 SSL 적용 후 활성화)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# 커스텀 에러 페이지
+ErrorDocument 404 /404.html
+
+# 기본 인덱스
+DirectoryIndex index.html index.php
+
+# /_inbox 비공개 (apply.php 백업 파일)
+<IfModule mod_authz_core.c>
+  <Directory "_inbox">
+    Require all denied
+  </Directory>
+</IfModule>
+
+# gzip 압축
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# 캐시 (정적 자원만)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+</IfModule>
+
+# 보안 헤더
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

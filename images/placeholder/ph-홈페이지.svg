@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B1F3A"/><stop offset="100%" stop-color="#13315C"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<rect x="80" y="120" width="640" height="60" rx="10" fill="#1c3b6d"/>
+<rect x="80" y="200" width="420" height="22" rx="6" fill="#2a4f8a"/>
+<rect x="80" y="232" width="320" height="18" rx="6" fill="#274876"/>
+<rect x="80" y="280" width="640" height="220" rx="14" fill="#1c3b6d"/>
+<rect x="100" y="300" width="180" height="180" rx="10" fill="#2a4f8a"/>
+<rect x="300" y="300" width="180" height="180" rx="10" fill="#2a4f8a"/>
+<rect x="500" y="300" width="200" height="180" rx="10" fill="#2a4f8a"/>
+<text x="400" y="560" text-anchor="middle" fill="#C8A85A" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="22" font-weight="700">홈페이지 / WEBSITE</text>
+</svg>

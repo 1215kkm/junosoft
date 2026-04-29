@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /apply.php
+Disallow: /_inbox/
+
+Sitemap: https://junosoft.co.kr/sitemap.xml
