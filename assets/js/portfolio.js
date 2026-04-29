@@ -15,8 +15,8 @@
   const fmt = n => n.toLocaleString('ko-KR');
 
   const card = p => `
-    <a class="pf-card" id="${p.id}" href="/apply.html?ref=${p.id}&style=${encodeURIComponent(p.category)}">
-      <div class="thumb"><img src="${p.thumb}" alt="${p.title}" loading="lazy" onerror="this.src='/images/placeholder/ph-${p.category}.svg'"/></div>
+    <a class="pf-card" id="${p.id}" href="apply.html?ref=${p.id}&style=${encodeURIComponent(p.category)}">
+      <div class="thumb"><img src="${p.thumb}" alt="${p.title}" loading="lazy" onerror="this.src='images/placeholder/ph-${p.category}.svg'"/></div>
       <div class="body">
         <div class="cat">${p.category} · ${p.industry}</div>
         <h4>${p.title}</h4>
@@ -46,7 +46,7 @@
     render();
   }
 
-  fetch('/assets/data/portfolio.json').then(r => r.json()).then(d => {
+  fetch('assets/data/portfolio.json').then(r => r.json()).then(d => {
     DATA = d;
     if (cat !== '전체') setTab(cat); else render();
   });
