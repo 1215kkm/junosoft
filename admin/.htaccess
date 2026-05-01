@@ -1,0 +1,8 @@
+# _config.php / _helpers.php / _layout.php 등 underscore 파일 외부 접근 차단
+<FilesMatch "^_">
+  Require all denied
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

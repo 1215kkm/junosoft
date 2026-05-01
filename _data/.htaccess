@@ -1,0 +1,6 @@
+# 외부 접근 전면 차단
+Require all denied
+<IfModule !mod_authz_core.c>
+  Order allow,deny
+  Deny from all
+</IfModule>
