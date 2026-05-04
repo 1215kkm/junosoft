@@ -27,6 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['flash']=['type'=>$ok?'ok':'err','msg'=>$ok?'테스트 메시지를 발송했습니다. 텔레그램을 확인해 주세요.':'발송 실패. 토큰/Chat ID와 봇이 chat에 추가되었는지 확인해 주세요.'];
         header('Location: settings.php'); exit;
     }
+    if ($action === 'seo_refresh') {
+        $r = seo_refresh_all();
+        $msg = "sitemap.xml({$r['urls']}건)·feed.xml({$r['feed']}건) 갱신 완료. ";
+        $msg .= ($r['ping']['ok'] ?? false) ? "IndexNow 색인 요청 OK ({$r['ping']['count']}건)." : "IndexNow 발송 실패 또는 미적용 (사이트 URL 미설정).";
+        $_SESSION['flash']=['type'=>($r['ping']['ok']??false)?'ok':'err','msg'=>$msg];
+        header('Location: settings.php#seo'); exit;
+    }
     if ($action === 'change_pw') {
         $cur = (string)($_POST['cur'] ?? '');
         $p1  = (string)($_POST['p1']  ?? '');
@@ -45,7 +52,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ob_start();
 ?>
+<?php $seo = seo_status(); ?>
 <div class="admin-h"><h1>설정</h1></div>
+
+<form method="post" class="crd" id="seo">
+  <input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"/>
+  <input type="hidden" name="action" value="seo_refresh"/>
+  <h3 style="margin:0 0 6px;color:#0B1F3A;font-size:17px">🔍 검색엔진 자동 노출 (SEO)</h3>
+  <p class="muted" style="margin:0 0 14px;font-size:13.5px">
+    포트폴리오 추가/수정/삭제와 블로그 자동 발행 시 sitemap.xml·feed.xml이 자동으로 갱신되고 IndexNow API로 즉시 색인 요청이 전송됩니다 (Bing·네이버·Yandex·Seznam 즉시 반영, 구글은 sitemap 기반 발견).
+  </p>
+  <div class="kv-tbl" style="font-size:13.5px">
+    <b>sitemap.xml</b><span><?= $seo['sitemap_exists'] ? '생성됨 · 마지막 갱신 '.date('Y-m-d H:i', $seo['sitemap_mtime']) : '<span style="color:#B0322B">미생성 — 아래 버튼으로 생성</span>' ?> · <a href="../sitemap.xml" target="_blank">파일 보기 ↗</a></span>
+    <b>feed.xml (RSS)</b><span><?= $seo['feed_exists'] ? '생성됨 · 마지막 갱신 '.date('Y-m-d H:i', $seo['feed_mtime']) : '<span style="color:#B0322B">미생성</span>' ?> · <a href="../feed.xml" target="_blank">파일 보기 ↗</a></span>
+    <b>IndexNow 키</b><span><?= $seo['indexnow_key'] ? h(substr($seo['indexnow_key'],0,8)).'…'.h(substr($seo['indexnow_key'],-4)).' (자동 생성됨)' : '<span style="color:#B0322B">아직 생성 안 됨</span>' ?></span>
+    <b>사이트 URL</b><span><?= $seo['site_url'] ? h($seo['site_url']) : '<span style="color:#B0322B">미설정 — 아래 메일 섹션에서 설정 후 갱신</span>' ?></span>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+    <button class="btn btn-primary" type="submit">지금 sitemap·feed 갱신 + IndexNow 색인 요청</button>
+    <a class="btn-sm" href="../sitemap.xml" target="_blank">sitemap.xml ↗</a>
+    <a class="btn-sm" href="../feed.xml" target="_blank">feed.xml ↗</a>
+    <a class="btn-sm" href="https://search.google.com/search-console" target="_blank">Google Search Console ↗</a>
+    <a class="btn-sm" href="https://searchadvisor.naver.com" target="_blank">네이버 서치어드바이저 ↗</a>
+  </div>
+</form>
 
 <form method="post" class="crd">
   <input type="hidden" name="csrf" value="<?= h(csrf_token()) ?>"/>

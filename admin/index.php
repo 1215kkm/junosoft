@@ -20,6 +20,8 @@ foreach ($files as $i => $f) {
 $pf_count = count(portfolio_load());
 $s = settings_load();
 $tg_ok = !empty($s['tg_token']) && !empty($s['tg_chat_id']);
+$seo = seo_status();
+$seo_ok = $seo['sitemap_exists'] && $seo['indexnow_key'] && $seo['site_url'];
 
 ob_start();
 ?>
@@ -33,6 +35,21 @@ ob_start();
   <div class="crd"><div class="num"><?= $total ?></div><div class="lbl">전체 문의</div></div>
   <div class="crd"><div class="num"><?= $pf_count ?></div><div class="lbl">등록된 포트폴리오</div></div>
   <div class="crd"><div class="num" style="font-size:18px;color:<?= $tg_ok?'#1F7A3A':'#B0322B' ?>"><?= $tg_ok?'정상':'미설정' ?></div><div class="lbl">텔레그램 알림</div></div>
+</div>
+
+<div class="crd" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;background:<?= $seo_ok?'#F1F8F4':'#FFF7E5' ?>;border-color:<?= $seo_ok?'#B7E0C5':'#F2D88B' ?>">
+  <div>
+    <h3 style="margin:0 0 4px;color:#0B1F3A;font-size:16px">🔍 검색엔진 자동 노출 (SEO)</h3>
+    <p style="margin:0;font-size:13.5px;color:#3d465c">
+      <?php if ($seo_ok): ?>
+        sitemap.xml·feed.xml 자동 갱신 + IndexNow 즉시 색인 요청 활성화 ·
+        마지막 갱신 <?= date('Y-m-d H:i', $seo['sitemap_mtime']) ?>
+      <?php else: ?>
+        ⚠ 사이트 URL 또는 sitemap이 아직 설정되지 않았습니다. 설정 페이지에서 "지금 갱신" 버튼을 한 번 눌러주세요.
+      <?php endif; ?>
+    </p>
+  </div>
+  <a class="btn-sm" href="settings.php#seo">SEO 설정 →</a>
 </div>
 
 <div class="crd">

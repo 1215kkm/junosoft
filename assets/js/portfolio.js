@@ -49,7 +49,35 @@
   fetch('assets/data/portfolio.json').then(r => r.json()).then(d => {
     DATA = d;
     if (cat !== '전체') setTab(cat); else render();
+    injectItemListJsonLd(d);
   });
+
+  function injectItemListJsonLd(list) {
+    const origin = location.origin && location.origin.startsWith('http') ? location.origin : 'https://junosoft.co.kr';
+    const items = list.slice(0, 50).map((p, i) => ({
+      '@type': 'ListItem',
+      'position': i + 1,
+      'item': {
+        '@type': 'CreativeWork',
+        'name': p.title,
+        'description': p.summary,
+        'image': origin + '/' + (p.thumb || '').replace(/^\//, ''),
+        'url': origin + '/portfolio.html#' + p.id,
+        'offers': { '@type': 'Offer', 'priceCurrency': 'KRW', 'price': p.price }
+      }
+    }));
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      'name': '주노소프트 포트폴리오',
+      'numberOfItems': list.length,
+      'itemListElement': items
+    };
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(ld);
+    document.head.appendChild(s);
+  }
 
   tabs?.addEventListener('click', e => {
     const b = e.target.closest('.pf-tab'); if (!b) return; setTab(b.dataset.cat);

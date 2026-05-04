@@ -34,6 +34,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-2.5-flash
           SITE_BASE_URL: https://junosoft.co.kr
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
         run: php tools/auto-blog/run.php
 
       - name: Commit

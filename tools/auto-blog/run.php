@@ -196,7 +196,65 @@ $xml = str_replace('</urlset>', "  <url><loc>{$BASE}/blog/</loc><changefreq>week
 file_put_contents($sitemap, $xml);
 echo "sitemap.xml 갱신\n";
 
-// 6) topics.txt 마킹
+// 6) feed.xml 갱신 (RSS)
+$feed = $ROOT . '/feed.xml';
+$rssItems = '';
+foreach (array_slice($posts, 0, 30) as $p) {
+    $bn = basename($p);
+    if (!preg_match('/^(\d{4}-\d{2}-\d{2})/', $bn, $dm)) continue;
+    $h2 = (string)file_get_contents($p);
+    preg_match('/<title>(.*?)\s\|/u', $h2, $tt2);
+    preg_match('/<meta name="description" content="(.*?)"/u', $h2, $dd2);
+    $title2 = htmlspecialchars($tt2[1] ?? $bn, ENT_XML1);
+    $desc2  = htmlspecialchars($dd2[1] ?? '', ENT_XML1);
+    $link2  = "{$BASE}/blog/posts/{$bn}";
+    $pub    = date(DATE_RSS, strtotime($dm[1] . ' 09:00:00'));
+    $rssItems .= "    <item>\n      <title>{$title2}</title>\n      <link>{$link2}</link>\n      <description>{$desc2}</description>\n      <pubDate>{$pub}</pubDate>\n      <guid isPermaLink=\"true\">{$link2}</guid>\n    </item>\n";
+}
+$rss  = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+$rss .= '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'."\n  <channel>\n";
+$rss .= "    <title>주노소프트 블로그</title>\n    <link>{$BASE}/blog/</link>\n    <atom:link href=\"{$BASE}/feed.xml\" rel=\"self\" type=\"application/rss+xml\" />\n";
+$rss .= "    <description>홈페이지·쇼핑몰·앱 제작 실전 가이드. 매주 화/금 자동 업데이트.</description>\n    <language>ko</language>\n    <lastBuildDate>".date(DATE_RSS)."</lastBuildDate>\n";
+$rss .= $rssItems;
+$rss .= "  </channel>\n</rss>\n";
+file_put_contents($feed, $rss);
+echo "feed.xml 갱신\n";
+
+// 7) IndexNow 즉시 색인 요청 (Bing/Naver/Yandex/Seznam)
+$INDEXNOW_KEY = getenv('INDEXNOW_KEY') ?: '';
+if ($INDEXNOW_KEY !== '') {
+    $host = parse_url($BASE, PHP_URL_HOST) ?: '';
+    if ($host && !str_contains($host, 'localhost')) {
+        // 키 검증 파일 보장
+        $keyFile = $ROOT . "/{$INDEXNOW_KEY}.txt";
+        if (!is_file($keyFile)) @file_put_contents($keyFile, $INDEXNOW_KEY);
+        $payload = json_encode([
+            'host'        => $host,
+            'key'         => $INDEXNOW_KEY,
+            'keyLocation' => "{$BASE}/{$INDEXNOW_KEY}.txt",
+            'urlList'     => [
+                "{$BASE}/blog/posts/{$filename}",
+                "{$BASE}/blog/",
+                "{$BASE}/sitemap.xml",
+                "{$BASE}/feed.xml",
+            ],
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        $ch2 = curl_init('https://api.indexnow.org/indexnow');
+        curl_setopt_array($ch2, [
+            CURLOPT_POST => true, CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json; charset=utf-8'],
+            CURLOPT_POSTFIELDS => $payload, CURLOPT_TIMEOUT => 10,
+        ]);
+        curl_exec($ch2);
+        $idxStatus = (int)curl_getinfo($ch2, CURLINFO_RESPONSE_CODE);
+        curl_close($ch2);
+        echo "IndexNow ping → HTTP {$idxStatus}\n";
+    }
+} else {
+    echo "INDEXNOW_KEY 미설정 — IndexNow 핑 스킵 (선택사항)\n";
+}
+
+// 8) topics.txt 마킹
 $lines[$idx] = "# DONE {$date} :: " . $topic;
 file_put_contents($TOPICS, implode("\n", $lines));
 echo "topic 마킹 완료\n";

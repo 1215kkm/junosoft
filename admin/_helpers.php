@@ -116,3 +116,5 @@ function portfolio_load(): array {
 function portfolio_save(array $list): void {
     file_put_contents(PORTFOLIO_FILE, json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 }
+
+require_once __DIR__ . '/_seo.php';

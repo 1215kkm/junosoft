@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$err) {
             portfolio_save($list);
-            $_SESSION['flash']=['type'=>'ok','msg'=>($is_new?'추가':'수정').'되었습니다.'];
+            @seo_refresh_all([seo_url_base().'/portfolio.html', seo_url_base().'/']);
+            $_SESSION['flash']=['type'=>'ok','msg'=>($is_new?'추가':'수정').'되었습니다. (sitemap·IndexNow 자동 갱신)'];
             header('Location: portfolios.php'); exit;
         }
         $item = $rec; // 재표시

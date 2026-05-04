@@ -10,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $list = portfolio_load();
         $list = array_values(array_filter($list, fn($p) => ($p['id'] ?? '') !== $id));
         portfolio_save($list);
-        $_SESSION['flash']=['type'=>'ok','msg'=>'삭제되었습니다.'];
+        @seo_refresh_all([seo_url_base().'/portfolio.html', seo_url_base().'/']);
+        $_SESSION['flash']=['type'=>'ok','msg'=>'삭제되었습니다. (sitemap·IndexNow 자동 갱신)'];
     }
     header('Location: portfolios.php'); exit;
 }
