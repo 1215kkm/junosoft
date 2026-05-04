@@ -59,15 +59,26 @@ $query = trim((string)($_GET['q'] ?? ''));
 $expanded = (string)($_GET['exp'] ?? '0') === '1';
 $msg = '';
 
+$PATTERNS = [
+    'guide'    => '{kw} 가이드 — 비용·사례·체크리스트',
+    'check'    => '{kw} 이용 시 확인할 7가지',
+    'compare'  => '{kw} vs 외주 에이전시 — 시간·비용 솔직 비교',
+    'after'    => '{kw} 이후 — 직접 만들기 vs 맡기기 현실 가이드',
+    'cost'     => '{kw} 실제 비용 가이드 — 견적 산정 기준',
+    'mistake'  => '{kw} 사용 시 자주 하는 실수 5가지',
+    'case'     => '{kw} — 1인 사업자/스타트업/중소기업 케이스별 추천',
+];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
     $picked = $_POST['kw'] ?? [];
+    $pattern_key = (string)($_POST['pattern'] ?? 'guide');
+    $tpl = $PATTERNS[$pattern_key] ?? $PATTERNS['guide'];
     $topics = [];
     foreach ((array)$picked as $kw) {
         $kw = trim((string)$kw);
         if ($kw === '') continue;
-        // 키워드를 글 주제 형식으로 변환
-        $topics[] = $kw . " 가이드 — 비용·사례·체크리스트";
+        $topics[] = str_replace('{kw}', $kw, $tpl);
     }
     $extra = trim((string)($_POST['extra'] ?? ''));
     if ($extra !== '') {
@@ -124,6 +135,18 @@ ob_start();
     <?php if (empty($results)): ?>
       <p class="muted" style="padding:20px 0;text-align:center">결과가 없습니다. 더 일반적인 단어로 시도해 보세요.</p>
     <?php else: ?>
+      <div style="margin-bottom:14px;padding:12px 14px;background:#F6F7FB;border:1px solid #E6E8EE;border-radius:10px">
+        <div style="font-size:13px;font-weight:700;color:#0B1F3A;margin-bottom:8px">글 제목 패턴 선택</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:13px">
+          <?php foreach ($PATTERNS as $k=>$v): ?>
+            <label style="display:inline-flex;align-items:center;gap:5px;padding:6px 10px;background:#fff;border:1px solid #E6E8EE;border-radius:999px;cursor:pointer">
+              <input type="radio" name="pattern" value="<?= h($k) ?>" <?= $k==='guide'?'checked':'' ?>/>
+              <?= h(str_replace('{kw}', '○○', $v)) ?>
+            </label>
+          <?php endforeach; ?>
+        </div>
+        <p style="margin:8px 0 0;font-size:12.5px;color:#5C6577">💡 외부 서비스명("숨고", "인프런" 등) 검색 시에는 <b>"vs 외주" / "이후 가이드"</b> 패턴이 효과적입니다 — 사용자의 검색 의도를 자연스럽게 답변.</p>
+      </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;margin-bottom:14px">
         <?php foreach ($results as $kw): ?>
           <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:#F6F7FB;border:1px solid #E6E8EE;border-radius:8px;cursor:pointer;font-size:14px">
