@@ -74,7 +74,8 @@ $active = $active ?? '';
     <a href="index.php"      class="<?= $active==='dash'?'on':'' ?>">대시보드</a>
     <a href="inquiries.php"  class="<?= $active==='inq'?'on':'' ?>">문의 관리</a>
     <a href="portfolios.php" class="<?= $active==='pf'?'on':'' ?>">포트폴리오 관리</a>
-    <a href="settings.php"   class="<?= $active==='set'?'on':'' ?>">설정 (텔레그램)</a>
+    <a href="keywords.php"   class="<?= $active==='kw'?'on':'' ?>">키워드 도구</a>
+    <a href="settings.php"   class="<?= $active==='set'?'on':'' ?>">설정 (텔레그램·SEO)</a>
     <a href="../" target="_blank">사이트 보기 ↗</a>
     <div class="out">
       관리자 로그인 중<br/>
