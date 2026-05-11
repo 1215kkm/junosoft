@@ -53,10 +53,9 @@ $data = [
 ];
 $agree = isset($_POST['agree']);
 
-// ----- Validate -----
+// ----- Validate (간단 모드: 성함·연락처·이메일·동의만 필수) -----
 $errors = [];
-if ($data['company'] === '') $errors[] = '업체명';
-if ($data['name'] === '')    $errors[] = '담당자';
+if ($data['name'] === '')    $errors[] = '성함';
 if (!preg_match('/^[0-9\-+ ]{8,20}$/', $data['phone'])) $errors[] = '연락처';
 if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL))  $errors[] = '이메일';
 if (!$agree) $errors[] = '개인정보 동의';

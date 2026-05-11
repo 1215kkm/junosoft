@@ -49,11 +49,7 @@
 
         <div class="fieldgroup">
           <div class="field">
-            <label>업체명/브랜드명 <span class="req">*</span></label>
-            <input type="text" name="company" required maxlength="80" placeholder="예) 주노소프트"/>
-          </div>
-          <div class="field">
-            <label>담당자 성함 <span class="req">*</span></label>
+            <label>성함 <span class="req">*</span></label>
             <input type="text" name="name" required maxlength="40" placeholder="예) 홍길동"/>
           </div>
           <div class="field">
@@ -63,40 +59,6 @@
           <div class="field">
             <label>이메일 <span class="req">*</span></label>
             <input type="email" name="email" required maxlength="80" placeholder="name@company.com"/>
-          </div>
-          <div class="field">
-            <label>업종</label>
-            <select name="industry">
-              <option value="">선택해 주세요</option>
-              <option>병원/의료</option><option>학원/교육</option><option>법무/세무/회계</option>
-              <option>요식업/카페</option><option>제조/B2B</option><option>패션/뷰티</option>
-              <option>부동산/건설/인테리어</option><option>펫/반려</option><option>피트니스/스포츠</option>
-              <option>여행/숙박</option><option>문화/취미</option><option>기타</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>원하는 형태</label>
-            <select name="type">
-              <option value="">선택해 주세요</option>
-              <option>홈페이지</option>
-              <option>쇼핑몰</option>
-              <option>랜딩페이지</option>
-              <option>관리자/시스템</option>
-              <option>모바일앱</option>
-              <option>리뉴얼</option>
-              <option>아직 정하지 못했어요</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>예상 페이지 수</label>
-            <select name="pages">
-              <option value="">선택</option>
-              <option>1페이지(랜딩)</option>
-              <option>5페이지 내외</option>
-              <option>10페이지 내외</option>
-              <option>20페이지 이상</option>
-              <option>모르겠어요</option>
-            </select>
           </div>
           <div class="field">
             <label>예산</label>
@@ -110,48 +72,95 @@
               <option>협의 후 결정</option>
             </select>
           </div>
-          <div class="field">
-            <label>희망 일정</label>
-            <select name="schedule">
-              <option value="">선택</option>
-              <option>가능한 빠르게</option>
-              <option>1개월 이내</option>
-              <option>2~3개월 내</option>
-              <option>특정일 고정</option>
-              <option>유동적</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>기존 도메인/호스팅</label>
-            <input type="text" name="hosting" maxlength="80" placeholder="예) 닷홈, 카페24, 신규 등록 필요 등" />
-          </div>
-        </div>
-
-        <div class="field full">
-          <label>필요한 기능 (복수 선택)</label>
-          <div class="checks">
-            <label><input type="checkbox" name="features[]" value="회원가입/로그인"/>회원가입/로그인</label>
-            <label><input type="checkbox" name="features[]" value="결제(PG)"/>결제(PG)</label>
-            <label><input type="checkbox" name="features[]" value="정기결제"/>정기결제</label>
-            <label><input type="checkbox" name="features[]" value="예약 캘린더"/>예약 캘린더</label>
-            <label><input type="checkbox" name="features[]" value="게시판/블로그"/>게시판/블로그</label>
-            <label><input type="checkbox" name="features[]" value="관리자 페이지"/>관리자 페이지</label>
-            <label><input type="checkbox" name="features[]" value="다국어"/>다국어</label>
-            <label><input type="checkbox" name="features[]" value="카카오 알림톡/SMS"/>카카오 알림톡/SMS</label>
-            <label><input type="checkbox" name="features[]" value="지도/위치"/>지도/위치</label>
-            <label><input type="checkbox" name="features[]" value="SEO 최적화"/>SEO 최적화</label>
-            <label><input type="checkbox" name="features[]" value="앱 푸시"/>앱 푸시</label>
-          </div>
-        </div>
-
-        <div class="fieldgroup" style="margin-top:14px">
           <div class="field full">
-            <label>참고 사이트/자료 URL</label>
+            <label>참고 사이트</label>
             <input type="url" name="reference" placeholder="https://" maxlength="200"/>
           </div>
           <div class="field full">
-            <label>요구사항 / 추가로 알려주실 내용</label>
-            <textarea name="message" maxlength="2000" placeholder="브랜드 톤, 꼭 들어가야 할 콘텐츠, 일정·예산상의 제약 등 자유롭게 적어 주세요."></textarea>
+            <label>요청 내용</label>
+            <textarea name="message" maxlength="2000" placeholder="원하시는 결과물, 일정·예산 제약, 꼭 들어갔으면 하는 내용 등 자유롭게 적어 주세요."></textarea>
+          </div>
+        </div>
+
+        <div style="margin:18px 0;text-align:center">
+          <button type="button" id="toggleDetail" class="btn btn-ghost" style="padding:10px 22px;font-size:14px">
+            <span id="toggleLabel">+ 상세히 기재하기 (선택)</span>
+          </button>
+          <p class="muted" style="margin:8px 0 0;font-size:12.5px">필수는 위 6개뿐이에요. 자세히 적어주실수록 첫 견적이 더 정확합니다.</p>
+        </div>
+
+        <div id="detailFields" style="display:none">
+          <div class="fieldgroup">
+            <div class="field">
+              <label>업체명/브랜드명</label>
+              <input type="text" name="company" maxlength="80" placeholder="예) 주노소프트"/>
+            </div>
+            <div class="field">
+              <label>업종</label>
+              <select name="industry">
+                <option value="">선택해 주세요</option>
+                <option>병원/의료</option><option>학원/교육</option><option>법무/세무/회계</option>
+                <option>요식업/카페</option><option>제조/B2B</option><option>패션/뷰티</option>
+                <option>부동산/건설/인테리어</option><option>펫/반려</option><option>피트니스/스포츠</option>
+                <option>여행/숙박</option><option>문화/취미</option><option>기타</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>원하는 형태</label>
+              <select name="type">
+                <option value="">선택해 주세요</option>
+                <option>홈페이지</option>
+                <option>쇼핑몰</option>
+                <option>랜딩페이지</option>
+                <option>관리자/시스템</option>
+                <option>모바일앱</option>
+                <option>리뉴얼</option>
+                <option>아직 정하지 못했어요</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>예상 페이지 수</label>
+              <select name="pages">
+                <option value="">선택</option>
+                <option>1페이지(랜딩)</option>
+                <option>5페이지 내외</option>
+                <option>10페이지 내외</option>
+                <option>20페이지 이상</option>
+                <option>모르겠어요</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>희망 일정</label>
+              <select name="schedule">
+                <option value="">선택</option>
+                <option>가능한 빠르게</option>
+                <option>1개월 이내</option>
+                <option>2~3개월 내</option>
+                <option>특정일 고정</option>
+                <option>유동적</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>기존 도메인/호스팅</label>
+              <input type="text" name="hosting" maxlength="80" placeholder="예) 닷홈, 카페24, 신규 등록 필요 등" />
+            </div>
+          </div>
+
+          <div class="field full">
+            <label>필요한 기능 (복수 선택)</label>
+            <div class="checks">
+              <label><input type="checkbox" name="features[]" value="회원가입/로그인"/>회원가입/로그인</label>
+              <label><input type="checkbox" name="features[]" value="결제(PG)"/>결제(PG)</label>
+              <label><input type="checkbox" name="features[]" value="정기결제"/>정기결제</label>
+              <label><input type="checkbox" name="features[]" value="예약 캘린더"/>예약 캘린더</label>
+              <label><input type="checkbox" name="features[]" value="게시판/블로그"/>게시판/블로그</label>
+              <label><input type="checkbox" name="features[]" value="관리자 페이지"/>관리자 페이지</label>
+              <label><input type="checkbox" name="features[]" value="다국어"/>다국어</label>
+              <label><input type="checkbox" name="features[]" value="카카오 알림톡/SMS"/>카카오 알림톡/SMS</label>
+              <label><input type="checkbox" name="features[]" value="지도/위치"/>지도/위치</label>
+              <label><input type="checkbox" name="features[]" value="SEO 최적화"/>SEO 최적화</label>
+              <label><input type="checkbox" name="features[]" value="앱 푸시"/>앱 푸시</label>
+            </div>
           </div>
         </div>
 
@@ -195,6 +204,21 @@
   if(style){ parts.push('원하는 스타일: <b>'+style+'</b>'); }
   if(parts.length){ banner.style.display='block'; banner.innerHTML='✏️ '+parts.join(' · ')+' &nbsp;·&nbsp; 신청 시 자동 첨부됩니다.'; }
   document.getElementById('fTs').value=Date.now().toString();
+
+  // ref/style/package 가 URL 에 있으면 처음부터 상세 영역을 펼쳐서 맥락을 보여줌
+  const auto = ref || pkg || style;
+
+  const btn = document.getElementById('toggleDetail');
+  const wrap = document.getElementById('detailFields');
+  const lbl = document.getElementById('toggleLabel');
+  function setOpen(open){
+    wrap.style.display = open ? 'block' : 'none';
+    lbl.textContent = open ? '− 상세 영역 접기' : '+ 상세히 기재하기 (선택)';
+    btn.classList.toggle('btn-ghost', !open);
+    btn.classList.toggle('btn-primary', open);
+  }
+  if (auto) setOpen(true);
+  btn.addEventListener('click', () => setOpen(wrap.style.display === 'none'));
 })();
 </script>
 </body>
