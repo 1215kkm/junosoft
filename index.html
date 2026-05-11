@@ -286,7 +286,7 @@ fetch('assets/data/portfolio.json').then(r=>r.json()).then(list=>{
       <div class="body">
         <div class="cat">${p.category} · ${p.industry}</div>
         <h4>${p.title}</h4>
-        <div class="meta"><span>${p.period}</span><span class="price">${p.price.toLocaleString()}원~</span></div>
+        <div class="meta"><span>${p.period}</span></div>
       </div>
     </a>`).join('');
 });
