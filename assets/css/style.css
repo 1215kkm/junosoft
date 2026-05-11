@@ -98,9 +98,9 @@ button{font:inherit;cursor:pointer}
 .pf-card{display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);transition:var(--t);position:relative}
 .pf-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
 .pf-card .pf-open{flex:1;display:flex;flex-direction:column;background:transparent;border:0;padding:0;text-align:left;color:inherit;cursor:pointer;font:inherit;width:100%}
-.pf-card .thumb,.pf-preview .pf-card a .thumb{display:block;aspect-ratio:4/3;background:#e9edf5;overflow:hidden}
-.pf-card .thumb img{width:100%;height:100%;object-fit:cover;transition:var(--t)}
-.pf-card:hover .thumb img{transform:scale(1.04)}
+.pf-card .thumb,.pf-preview .pf-card a .thumb{display:block;background:#e9edf5;overflow:hidden;line-height:0}
+.pf-card .thumb img{width:100%;height:auto;display:block;transition:var(--t)}
+.pf-card:hover .thumb img{transform:scale(1.02)}
 .pf-card .body{display:block;padding:14px 16px}
 .pf-card .cat{display:block;font-size:11px;letter-spacing:.14em;color:var(--gold-2);font-weight:700;text-transform:uppercase}
 .pf-card h4{margin:6px 0 6px;font-size:15px;color:var(--navy)}
