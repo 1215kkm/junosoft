@@ -107,7 +107,7 @@ $body = implode("\n", $lines);
 // ----- Settings -----
 $cfg = settings_load();
 $site = rtrim($cfg['site_url'] ?? 'https://junosoft.co.kr', '/');
-$adminTo  = $cfg['admin_email'] ?: 'contact@junosoft.co.kr';
+$adminTo  = $cfg['admin_email'] ?: 'rute20002@gmail.com';
 $fromAddr = $cfg['from_email']  ?: 'noreply@junosoft.co.kr';
 
 // ----- Mail to admin -----
@@ -119,7 +119,7 @@ $headers .= "MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\nCon
 // ----- Auto-reply to applicant -----
 $autoBody = "{$data['name']}님, 견적 신청이 정상 접수되었습니다.\n\n"
           . "1영업일(평일 10:00–18:00) 이내에 담당 PM이 회신드립니다.\n"
-          . "급하신 경우 02-0000-0000 으로 연락 주세요.\n\n"
+          . "급하신 경우 010-3321-7317 으로 연락 주세요.\n\n"
           . "[접수 내역]\n{$body}\n\n— 주노소프트 드림";
 $autoHeaders = "From: " . enc_subject('주노소프트') . " <{$fromAddr}>\r\n"
              . "MIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\n";

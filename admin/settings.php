@@ -83,7 +83,7 @@ ob_start();
   <div class="field-row">
     <div class="field">
       <label>관리자 수신 메일 <small style="color:#5C6577;font-weight:500">(문의 접수 시 알림 받을 주소)</small></label>
-      <input type="email" name="admin_email" value="<?= h($s['admin_email'] ?? '') ?>" placeholder="contact@junosoft.co.kr"/>
+      <input type="email" name="admin_email" value="<?= h($s['admin_email'] ?? '') ?>" placeholder="rute20002@gmail.com"/>
     </div>
     <div class="field">
       <label>발신 메일 (From) <small style="color:#5C6577;font-weight:500">(도메인 메일 권장. SPF 일치)</small></label>
