@@ -120,7 +120,7 @@
     render();
   }
 
-  fetch('assets/data/portfolio.json').then(r => r.json()).then(d => {
+  fetch(grid.dataset.src || 'assets/data/portfolio.json').then(r => r.json()).then(d => {
     DATA = d;
     if (cat !== '전체') setTab(cat); else render();
     injectItemListJsonLd(d);

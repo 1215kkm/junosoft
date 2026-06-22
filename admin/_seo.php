@@ -77,6 +77,7 @@ function seo_sitemap_rebuild(): array {
     $static = [
         ['',                        'weekly',  '1.0'],
         ['portfolio.html',          'weekly',  '0.9'],
+        ['cafe24.html',             'weekly',  '0.9'],
         ['apply.html',              'monthly', '0.8'],
         ['industry/hospital.html',  'monthly', '0.7'],
         ['industry/academy.html',   'monthly', '0.7'],

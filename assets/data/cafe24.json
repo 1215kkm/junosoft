@@ -1,0 +1,14 @@
+[
+  {"id":"c01","title":"카페24 작품 01","industry":"패션·의류","category":"쇼핑몰","thumb":"images/placeholder/cafe24-01.jpg","detail":"images/placeholder/cafe24-01-2.jpg","period":"-","summary":"카페24 솔루션으로 구축한 패션 자사몰.","tags":["카페24","쇼핑몰","결제"]},
+  {"id":"c02","title":"카페24 작품 02","industry":"식품·F&B","category":"쇼핑몰","thumb":"images/placeholder/cafe24-02.jpg","detail":"images/placeholder/cafe24-02-2.jpg","period":"-","summary":"식품·정기배송 운영을 갖춘 카페24 쇼핑몰.","tags":["카페24","정기결제"]},
+  {"id":"c03","title":"카페24 작품 03","industry":"뷰티·코스메틱","category":"쇼핑몰","thumb":"images/placeholder/cafe24-03.jpg","detail":"images/placeholder/cafe24-03-2.jpg","period":"-","summary":"뷰티 브랜드를 위한 감성 카페24 자사몰.","tags":["카페24","쿠폰","후기"]},
+  {"id":"c04","title":"카페24 작품 04","industry":"펫·반려동물","category":"쇼핑몰","thumb":"images/placeholder/cafe24-04.jpg","detail":"images/placeholder/cafe24-04-2.jpg","period":"-","summary":"반려동물용품 전문 카페24 쇼핑몰.","tags":["카페24","필터검색"]},
+  {"id":"c05","title":"카페24 작품 05","industry":"리빙·홈데코","category":"쇼핑몰","thumb":"images/placeholder/cafe24-05.jpg","detail":"images/placeholder/cafe24-05-2.jpg","period":"-","summary":"홈데코·가구 카페24 자사몰.","tags":["카페24","기획전"]},
+  {"id":"c06","title":"카페24 작품 06","industry":"유아·아동","category":"쇼핑몰","thumb":"images/placeholder/cafe24-06.jpg","detail":"images/placeholder/cafe24-06-2.jpg","period":"-","summary":"유아·아동 상품 전문 카페24 몰.","tags":["카페24","SNS"]},
+  {"id":"c07","title":"카페24 작품 07","industry":"액세서리","category":"쇼핑몰","thumb":"images/placeholder/cafe24-07.jpg","detail":"images/placeholder/cafe24-07-2.jpg","period":"-","summary":"주얼리·액세서리 D2C 카페24 몰.","tags":["카페24","옵션"]},
+  {"id":"c08","title":"카페24 작품 08","industry":"스포츠·아웃도어","category":"쇼핑몰","thumb":"images/placeholder/cafe24-08.jpg","detail":"images/placeholder/cafe24-08-2.jpg","period":"-","summary":"스포츠·아웃도어 카페24 쇼핑몰.","tags":["카페24","가이드"]},
+  {"id":"c09","title":"카페24 작품 09","industry":"기업·브랜드","category":"홈페이지","thumb":"images/placeholder/cafe24-09.jpg","detail":"images/placeholder/cafe24-09-2.jpg","period":"-","summary":"카페24 호스팅 기반 기업 공식 홈페이지.","tags":["카페24","기업형"]},
+  {"id":"c10","title":"카페24 작품 10","industry":"요식업·카페","category":"홈페이지","thumb":"images/placeholder/cafe24-10.jpg","detail":"images/placeholder/cafe24-10-2.jpg","period":"-","summary":"카페·매장 브랜드 카페24 홈페이지.","tags":["카페24","SNS"]},
+  {"id":"c11","title":"카페24 작품 11","industry":"학원·교육","category":"홈페이지","thumb":"images/placeholder/cafe24-11.jpg","detail":"images/placeholder/cafe24-11-2.jpg","period":"-","summary":"학원·교육 기관 카페24 홈페이지.","tags":["카페24","상담폼"]},
+  {"id":"c12","title":"카페24 작품 12","industry":"의료·뷰티","category":"홈페이지","thumb":"images/placeholder/cafe24-12.jpg","detail":"images/placeholder/cafe24-12-2.jpg","period":"-","summary":"의료·뷰티 클리닉 카페24 홈페이지.","tags":["카페24","예약"]}
+]
